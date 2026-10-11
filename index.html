@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Form Undangan - Xtrade 1000+</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#000;color:#fff;padding:12px 10px 90px;line-height:1.45}h1{color:#d4af37;font-size:16px;text-align:center;border-bottom:2px solid #d4af37;padding-bottom:8px;margin-bottom:10px}.top{background:#111;border:1px solid #d4af37;border-radius:10px;padding:8px;margin-bottom:10px;font-size:11px;text-align:center}.top b{color:#ffd700}label{display:block;font-size:11px;font-weight:800;color:#d4af37;margin:10px 0 4px}input,textarea,select{width:100%;padding:9px 10px;border-radius:8px;border:1.2px solid #333;background:#111;color:#fff;font-size:11px;outline:none}input:focus,textarea:focus{border-color:#d4af37}textarea{min-height:52px;resize:vertical}.row{display:flex;gap:6px}.row>div{flex:1}.hint{font-size:9px;color:#888;margin-top:2px}.bonus{border:1.5px dashed #d4af37;border-radius:10px;padding:8px;margin-top:12px;background:rgba(212,175,55,0.06)}.bonus h2{font-size:11px;color:#ffd700;margin-bottom:6px}.btn{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.98);border-top:2px solid #d4af37;padding:8px 10px;display:flex;gap:6px;z-index:10}.btn button{flex:1;padding:11px;border:none;border-radius:10px;font-weight:900;font-size:12px;cursor:pointer}.btn-wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff}.btn-copy{background:#222;color:#fff}</style></head><body>
+<h1>💌 Form Undangan Digital<br><small style="font-size:9px;color:#888">WA 0895-0185-7938 • Xtrade 1000+</small></h1>
+<div class="top">Tema: <b id="temaTop">-</b> • Nama awal: <b id="namaTop">-</b> • Harga: <b id="hargaTop">Rp.45K-149K</b><br><small style="font-size:9px">Isi form di bawah, klik Kirim WA - otomatis ke admin</small></div>
+
+<label>1️⃣ Nama Lengkap:</label><div class="row"><div><input id="pria" placeholder="Mempelai Pria: Suparlan"><div class="hint">Lengkap + gelar</div></div><div><input id="wanita" placeholder="Mempelai Wanita: Dina Ayu"><div class="hint">Lengkap + gelar</div></div></div>
+
+<label>2️⃣ Nama Panggilan (cover):</label><input id="panggilan" placeholder="Contoh: Suparlan & Dina">
+<label>3️⃣ Tanggal & Hari:</label><input id="tanggal" placeholder="Contoh: Minggu, 11 November 2026">
+<label>4️⃣ Jam Acara:</label><div class="row"><div><input id="akad" placeholder="Akad: 08.00 WIB"></div><div><input id="resepsi" placeholder="Resepsi: 10.00 - Selesai"></div></div>
+<label>5️⃣ Alamat Lengkap:</label><textarea id="alamat" placeholder="Contoh: Kediaman Mempelai Wanita, Jln Cibedug Mayak RT02/07, Curugbitung, Lebak - Banten"></textarea>
+<label>6️⃣ Link Google Maps:</label><input id="maps" placeholder="Paste link Maps / Share loc WA">
+<label>7️⃣ Foto Prewed (4-8 foto):</label><textarea id="foto" placeholder="Tulis: Nanti kirim via WA ya kak / Atau upload link Google Drive:..."></textarea><div class="hint">HD jangan blur - Foto berdua, solo pria & wanita</div>
+<label>8️⃣ Musik / Lagu:</label><input id="musik" placeholder="Judul YouTube / Kirim file MP3 via WA / Default dari kami">
+<label>9️⃣ No Rekening / Amplop Digital:</label><textarea id="rekening" placeholder="BCA 123456 a/n Suparlan - DANA 0895... a/n Dina"></textarea>
+<label>🔟 No WA Konfirmasi:</label><input id="waTamu" placeholder="No WA yang dihubungi tamu: 0895-xxxx">
+<label>1️⃣1️⃣ Ayat / Quotes (opsional):</label><input id="ayat" placeholder="QS Ar-Rum:21 / Quotes cinta">
+<label>1️⃣2️⃣ Dresscode (opsional):</label><input id="dresscode" placeholder="Formal, Batik, dll">
+
+<div class="bonus"><h2>🔥 BONUS PREMIUM (isi kalau ada):</h2>
+<label>Cerita Cinta / Love Story:</label><textarea id="story" placeholder="3 paragraf: Awal ketemu, Pacaran, Lamaran"></textarea>
+<label>Nama Orang Tua:</label><div class="row"><div><input id="ortuPria" placeholder="Bpk/Ibu Pria"></div><div><input id="ortuWanita" placeholder="Bpk/Ibu Wanita"></div></div>
+<label>Link Instagram:</label><div class="row"><div><input id="igPria" placeholder="IG Pria: @..."></div><div><input id="igWanita" placeholder="IG Wanita: @..."></div></div>
+<label>Jumlah Tamu / Kuota RSVP:</label><div class="row"><div><input id="kuota" placeholder="Contoh: 200 tamu"></div><div><input id="deadline" placeholder="Deadline RSVP: 10 Nov 2026"></div></div>
+</div>
+
+<div class="btn"><button class="btn-copy" onclick="copyForm()">📋 Copy</button><button class="btn-wa" onclick="kirimWA()">✈️ Kirim WA ke Admin</button></div>
+
+<script>
+const p=new URLSearchParams(location.search);
+let tema=p.get('tema')||p.get('t')||p.get('slug')||'-';
+let namaAwal=p.get('nama')||p.get('kpd')||'';
+let harga=p.get('harga')||'';
+if(tema!='-')document.getElementById('temaTop').innerText=tema;
+if(namaAwal){document.getElementById('namaTop').innerText=namaAwal;let parts=namaAwal.split('&');if(parts.length==2){document.getElementById('pria').value=parts[0].trim();document.getElementById('wanita').value=parts[1].trim();document.getElementById('panggilan').value=namaAwal} else if(namaAwal.includes('DAN')){let pp=namaAwal.split('DAN');document.getElementById('pria').value=pp[0].trim();document.getElementById('wanita').value=pp[1].trim();}}
+if(harga)document.getElementById('hargaTop').innerText=harga;
+if(p.get('tgl'))document.getElementById('tanggal').value=p.get('tgl');
+
+function getText(){
+return `Halo kak! Untuk undangan digital tolong kirim:
+
+Tema: ${document.getElementById('temaTop').innerText}
+Harga: ${document.getElementById('hargaTop').innerText}
+
+1️⃣ Nama Lengkap:
+- Mempelai Pria: ${document.getElementById('pria').value||'-'}
+- Mempelai Wanita: ${document.getElementById('wanita').value||'-'}
+
+2️⃣ Nama Panggilan: ${document.getElementById('panggilan').value||'-'}
+
+3️⃣ Tanggal & Hari: ${document.getElementById('tanggal').value||'-'}
+
+4️⃣ Jam Acara:
+- Akad: ${document.getElementById('akad').value||'-'}
+- Resepsi: ${document.getElementById('resepsi').value||'-'}
+
+5️⃣ Alamat Lengkap:
+${document.getElementById('alamat').value||'-'}
+
+6️⃣ Link Google Maps:
+${document.getElementById('maps').value||'-'}
+
+7️⃣ Foto Prewed (4-8 foto):
+${document.getElementById('foto').value||'-'}
+
+8️⃣ Musik / Lagu:
+${document.getElementById('musik').value||'-'}
+
+9️⃣ No Rekening / Amplop Digital:
+${document.getElementById('rekening').value||'-'}
+
+🔟 No WA Konfirmasi: ${document.getElementById('waTamu').value||'-'}
+
+1️⃣1️⃣ Ayat / Quotes: ${document.getElementById('ayat').value||'-'}
+
+1️⃣2️⃣ Dresscode: ${document.getElementById('dresscode').value||'-'}
+
+🔥 BONUS PREMIUM:
+- Cerita Cinta: ${document.getElementById('story').value||'-'}
+- Ortu Pria: ${document.getElementById('ortuPria').value||'-'} | Ortu Wanita: ${document.getElementById('ortuWanita').value||'-'}
+- IG Pria: ${document.getElementById('igPria').value||'-'} | IG Wanita: ${document.getElementById('igWanita').value||'-'}
+- Kuota: ${document.getElementById('kuota').value||'-'} | Deadline RSVP: ${document.getElementById('deadline').value||'-'}
+
+Terima kasih kak 🙏`;
+}
+function kirimWA(){
+let txt=getText();
+let url='https://wa.me/6289501857938?text='+encodeURIComponent(txt);
+window.open(url,'_blank');
+}
+function copyForm(){
+let txt=getText();
+if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>alert('✅ Form tercopy! Paste ke WA'))} else {let ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✅ Copy!')}
+}
+</script></body></html>
